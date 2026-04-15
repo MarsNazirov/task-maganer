@@ -27,16 +27,16 @@
 ```bash
 git clone https://github.com/ваш-логин/task-manager.git
 cd task-manager
-2. Установка зависимостей
-bash
-composer install
-3. Настройка окружения
-Скопируйте файл .env.example в .env:
 
-bash
+### 2. Клонирование репозитория
+```bash
+composer install
+
+### 3. Настройка окружения
+Скопируйте файл .env.example в .env:
+```bash
 cp .env.example .env
 Отредактируйте .env, указав параметры подключения к базе данных:
-
 env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -44,15 +44,16 @@ DB_PORT=3306
 DB_DATABASE=task_manager
 DB_USERNAME=root
 DB_PASSWORD=
-Также установите APP_URL (например, http://localhost:8000).
 
-4. Генерация ключа приложения
-bash
+### 4. Генерация ключа приложения
+```bash
 php artisan key:generate
-5. Запуск миграций и сидеров (опционально)
-bash
+
+### 5. Запуск миграций и сидеров (опционально)
+```bash
 php artisan migrate
 php artisan db:seed --class=TaskSeeder   # создаст несколько тестовых задач
-6. Запуск встроенного сервера
-bash
+
+### 6. Запуск встроенного сервера
+```bash
 php artisan serve
