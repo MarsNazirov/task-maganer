@@ -4,12 +4,10 @@
 <div class="container mt-5">
     <h1 class="mb-4">Мои задачи</h1>
 
-    <!-- Кнопка добавления -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#taskModal" id="addTaskBtn">
         + Новая задача
     </button>
-
-    <!-- Таблица задач -->
+    
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -39,7 +37,6 @@
     </table>
 </div>
 
-<!-- Модальное окно (добавление/редактирование) -->
 <div class="modal fade" id="taskModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
