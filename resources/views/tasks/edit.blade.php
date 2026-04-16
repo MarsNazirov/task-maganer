@@ -35,7 +35,7 @@
         </div> --}}
 
         <button type="submit" class="btn btn-primary">Обновить</button>
-        <a href="{{ route('tasks') }}" class="btn btn-secondary">Отмена</a>
+        <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Отмена</a>
     </form>
 </div>
 </body>

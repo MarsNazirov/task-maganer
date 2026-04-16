@@ -38,7 +38,7 @@ class TaskController extends Controller
             Cache::forget('tasks');
         }
 
-        return redirect()->route('tasks');
+        return redirect()->route('tasks.index');
 
     }
 
@@ -65,7 +65,7 @@ class TaskController extends Controller
             Cache::forget('tasks');
         }
 
-        return redirect()->route('tasks');
+        return redirect()->route('tasks.index');
     }
 
     /**

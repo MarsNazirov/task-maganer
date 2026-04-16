@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таск-менеджер</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
 <div class="container mt-5">
     <h1 class="mb-4">Мои задачи</h1>
 
@@ -30,17 +22,16 @@
         </thead>
         <tbody id="tasksTable">
             @foreach ($tasks as $task)
-            <tr id="" class="">
+            <tr id="task-{{ $task->id }}" class="@if($task->completed) table-success @endif">
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->description }}</td>
                 <td>{{ $task->date }}</td>
                 <td>
-                    <input type="checkbox" @if($task->completed) checked @endif class="task-complete" data-id="{{ $task->id }}">
+                    <input type="checkbox" class="task-complete" data-id="{{ $task->id }}" @if($task->completed) checked @endif>
                 </td>
                 <td>
                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">Изменить</a>
                     <button class="btn btn-sm btn-danger delete-task" data-id="{{ $task->id }}">Удалить</button>
-                    
                 </td>
             </tr>
             @endforeach
@@ -50,7 +41,6 @@
 
 <!-- Модальное окно (добавление/редактирование) -->
 <div class="modal fade" id="taskModal" tabindex="-1">
-    
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,11 +63,11 @@
                         <label class="form-label">Дата и время</label>
                         <input type="datetime-local" name="date" id="date" class="form-control" required>
                     </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                        <button type="submit" class="btn btn-primary" id="saveTaskBtn">Сохранить</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" id="saveTaskBtn">Сохранить</button>
+                </div>
             </form>
         </div>
     </div>
@@ -103,7 +93,7 @@
                 })
                 .catch(error => console.log('Ошибка:', error));
             }
-        }); 
+        });
     });
 
     document.querySelectorAll('.task-complete').forEach(checkbox => {
@@ -122,14 +112,13 @@
                     const row = this.closest('tr');
                     if (data.completed) {
                         row.classList.add('table-success');
-                    } else{
+                    } else {
                         row.classList.remove('table-success');
                     }
-                } 
+                }
             })
             .catch(error => console.log('Ошибка:', error));
-        })
-    })
+        });
+    });
 </script>
-</body>
-</html>
+@endsection
